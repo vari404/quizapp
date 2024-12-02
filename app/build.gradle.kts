@@ -1,3 +1,5 @@
+// app/build.gradle.kts (Module-Level)
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -5,28 +7,38 @@ plugins {
 
 android {
     namespace = "com.example.quizapp"
-    compileSdk = 35
+    compileSdk = 33
 
     defaultConfig {
         applicationId = "com.example.quizapp"
         minSdk = 21
-        targetSdk = 35
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
-        // Enable view binding
-        buildFeatures {
-            viewBinding = true
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        create("release") {
+            keyAlias = project.findProperty("MYAPP_RELEASE_KEY_ALIAS") as String? ?: "quizapp_alias"
+            keyPassword = project.findProperty("MYAPP_RELEASE_KEY_PASSWORD") as String? ?: "your_key_password"
+            storeFile = file(project.findProperty("MYAPP_RELEASE_STORE_FILE") as String? ?: "path/to/my-release-key.keystore")
+            storePassword = project.findProperty("MYAPP_RELEASE_STORE_PASSWORD") as String? ?: "your_store_password"
         }
     }
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = false // Set to true to enable code shrinking (e.g., ProGuard/R8)
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
+        }
+        getByName("debug") {
+            isMinifyEnabled = false
         }
     }
 
@@ -37,6 +49,10 @@ android {
 
     kotlinOptions {
         jvmTarget = "17"
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 }
 
