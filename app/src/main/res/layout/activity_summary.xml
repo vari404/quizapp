@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linear_layout_summary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Score Summary -->
+    <TextView
+        android:id="@+id/tv_score_summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You scored X out of Y"
+        android:textSize="20sp"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Restart Button -->
+    <Button
+        android:id="@+id/button_restart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Restart Quiz"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Exit Button -->
+    <Button
+        android:id="@+id/button_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exit"
+        android:padding="12dp" />
+
+</LinearLayout>
